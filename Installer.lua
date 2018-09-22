@@ -12,10 +12,10 @@ local args, options = shell.parse(...)
 ------------------------------------------------------------------------------------------------------------------------------------
 
 local URLs = {
-	applicationList = "https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Files.cfg",
-	installerLocalization = "https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Localizations/Installer/",
-	EFI = "https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/EFI/Minified.lua",
-	license = "https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/LICENSE",
+	applicationList = "https://raw.githubusercontent.com/AndrewShorty/ShortOS/master/Files.cfg",
+	installerLocalization = "https://raw.githubusercontent.com/AndrewShorty/ShortOS/master/Localizations/Installer/",
+	EFI = "https://raw.githubusercontent.com/AndrewShorty/ShortOS/master/EFI/Minified.lua",
+	license = "https://raw.githubusercontent.com/AndrewShorty/ShortOS/master/LICENSE",
 }
 
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -23,23 +23,23 @@ local URLs = {
 local reasons = {}
 
 if not _G._OSVERSION or tonumber(_G._OSVERSION:sub(8, 10)) < 1.5 then
-	table.insert(reasons, "Old version of OpenComputers mod detected: MineOS requires OpenComputers 1.5 or newer to work properly.")
+	table.insert(reasons, "Old version of OpenComputers mod detected: ShortOS requires OpenComputers 1.5 or newer to work properly.")
 end
 
 if component.isAvailable("tablet") then
-	table.insert(reasons, "Tablet PC detected: MineOS can't be installed on tablets.")
+	table.insert(reasons, "Tablet PC detected: ShortOS can't be installed on tablets.")
 end
 
 if screen.setPrecise and screen.setPrecise(false) == nil then
-	table.insert(reasons, "Low-tier screen detected: MineOS requires Tier 3 screen to work properly.")
+	table.insert(reasons, "Low-tier screen detected: ShortOS requires Tier 3 screen to work properly.")
 else
 	if gpu.maxResolution() < 160 then
-		table.insert(reasons, "Low-tier GPU detected: MineOS requires Tier 3 GPU to work properly.")
+		table.insert(reasons, "Low-tier GPU detected: ShortOS requires Tier 3 GPU to work properly.")
 	end
 end
 
 if computer.totalMemory() < 2097152 then
-	table.insert(reasons, "Not enough RAM: MineOS requires at least 2MB (2x Tier 3.5 RAM modules) to work properly.")
+	table.insert(reasons, "Not enough RAM: ShortOS requires at least 2MB (2x Tier 3.5 RAM modules) to work properly.")
 end
 
 if #reasons > 0 and not options.skiphardwarecheck and not options.s then
@@ -77,8 +77,8 @@ local function wget(url, path)
 	shell.execute("wget " .. url .. " " .. path .. " -fq")
 end
 
-print("Downloading MineOS file list...")
-local path = "/MineOS/System/Files.cfg"
+print("Downloading ShortOS file list...")
+local path = "/ShortOS/System/Files.cfg"
 wget(URLs.applicationList, path)
 applicationList = unserializeFile(path)
 fs.remove(path)
