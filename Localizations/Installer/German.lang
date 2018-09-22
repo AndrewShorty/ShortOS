@@ -1,0 +1,10 @@
+{
+	installSomeApps = "Apps installieren",
+	installWallpapers = "Wallpapers herunterladen",
+	downloading = "Lade herunter ",
+	reboot = "Neustarten",
+	needToReboot = "ShortOS wurde erfolgreich installiert",
+	terms = "Ich akzeptiere die Bedingungen der Vereinbarung",
+	flashingEEPROM = "Installiere EFI...",
+	flashEEPROM = "Installiere EFI",
+}
