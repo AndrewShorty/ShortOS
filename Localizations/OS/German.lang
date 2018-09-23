@@ -5,7 +5,7 @@
 	networkFTPConnections = "FTP-verbindungen",
 	networkFTPAddress = "Server addresse",
 	networkFTPPort = "Server port",
-	networkFTPUser = "User",
+	networkFTPUser = "Benutzer",
 	networkFTPPasswprd = "Passwort",
 	network = "Netzwerk",
 	networkTimeout = "Remotecomputer reagiert nicht",
