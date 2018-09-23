@@ -168,7 +168,7 @@ local function infoAboutClient(userData)
 
 	table.insert(arguments, {"EmptyLine"})
 	table.insert(arguments, {"Button", {ecs.colors.orange, 0x262626, "OK"}})
-	
+
 
 	ecs.universalWindow(table.unpack(arguments))
 end
@@ -182,12 +182,12 @@ local function modemMessageHandler(_, localAddress, remoteAddress, port, distanc
 			elseif messages[1] == "iAmHereAddMePlease" and not modemConnection.remoteAddress then
 				if not modemConnection.availableUsers[remoteAddress] then
 					local userData = serialization.unserialize(messages[2])
-					if 
-						(not userData.isRobot and not userData.isTablet and modemConnection.receiveMessagesFromComputers)
-						or
-						(userData.isRobot and modemConnection.receiveMessagesFromRobots)
-						or
-						(userData.isTablet and modemConnection.receiveMessagesFromTablets)
+					if
+					(not userData.isRobot and not userData.isTablet and modemConnection.receiveMessagesFromComputers)
+							or
+							(userData.isRobot and modemConnection.receiveMessagesFromRobots)
+							or
+							(userData.isTablet and modemConnection.receiveMessagesFromTablets)
 					then
 						modemConnection.availableUsers[userData.address] = userData
 						modem.send(remoteAddress, modemConnection.port, "iAmHereAddMePlease", modemConnection.dataToSend)
@@ -215,35 +215,35 @@ local function createSendingArray()
 		if component.isAvailable("inventory_controller") then
 			modemConnection.dataToSend.inventoryController = true; modemConnection.dataToSend.hasUpgrades = true
 		end
-	
+
 		if component.isAvailable("tank_controller") then
 			modemConnection.dataToSend.tankController = true; modemConnection.dataToSend.hasUpgrades = true
 		end
-	
+
 		if component.isAvailable("crafting") then
 			modemConnection.dataToSend.crafting = true; modemConnection.dataToSend.hasUpgrades = true
 		end
-	
+
 		if component.isAvailable("redstone") then
 			modemConnection.dataToSend.redstone = true; modemConnection.dataToSend.hasUpgrades = true
 		end
 	end
-	
+
 	if component.isAvailable("tablet") then
 		modemConnection.dataToSend.isTablet = true
 		if component.isAvailable("navigation") then
 			modemConnection.dataToSend.navigation = true; modemConnection.dataToSend.hasUpgrades = true
 		end
-	
+
 		if component.isAvailable("piston") then
 			modemConnection.dataToSend.piston = true; modemConnection.dataToSend.hasUpgrades = true
 		end
 	end
-	
+
 	if component.isAvailable("geolyzer") then
 		modemConnection.dataToSend.geolyzer = true; modemConnection.dataToSend.hasUpgrades = true
 	end
-	
+
 	modemConnection.dataToSend = serialization.serialize(modemConnection.dataToSend)
 end
 
@@ -270,7 +270,7 @@ local function circle(xCenter, yCenter, radius, color)
 		insertPoints(y, x);
 		if (delta < 0) then
 			delta = delta + (4 * x + 6)
-		else 
+		else
 			delta = delta + (4 * (x - y) + 10)
 			y = y - 1
 		end
@@ -300,7 +300,7 @@ local function drawIconAndAddress(x, y, background, foreground, userData)
 	end
 
 	ecs.colorTextWithBack(x, y + 5, foreground, background, ecs.stringLimit("end", userData.address, 14))
-	
+
 	return x, y, x + 13, y + 5
 end
 
@@ -343,7 +343,7 @@ end
 
 local function connectionGUI()
 	ecs.square(1, 1, xSize, ySize, 0xEEEEEE)
-	
+
 	local xCircle, yCircle = math.floor(xSize / 2), ySize - 3
 	local minumumRadius, maximumRadius = 7, xCircle * 0.8
 	local step = 4
@@ -356,7 +356,7 @@ local function connectionGUI()
 		if ecs.getArraySize(modemConnection.availableUsers) > 0 then
 			currentRadius = 0
 			drawCircles(xCircle, yCircle, minumumRadius, maximumRadius, step, currentRadius)
-			
+
 			drawHorizontalIcons()
 
 			local oldPixels, needToUpdate
@@ -375,7 +375,7 @@ local function connectionGUI()
 
 				local e = { event.pull() }
 				if e[1] == "touch" then
-					
+
 					if obj.CykaKnopkaInfo and obj.CykaKnopkaConnect then
 						if ecs.clickedAtArea(e[3], e[4], obj.CykaKnopkaInfo[1], obj.CykaKnopkaInfo[2], obj.CykaKnopkaInfo[3], obj.CykaKnopkaInfo[4]) then
 							ecs.drawButton(obj.CykaKnopkaInfo[1], obj.CykaKnopkaInfo[2], 16, 3, "Informationen", 0x262626, 0xFFFFFF)
@@ -399,7 +399,7 @@ local function connectionGUI()
 
 							local e2 = { event.pullFiltered(modemConnection.waitForConnectionAcceptingDelay, filter) }
 							ecs.drawOldPixels(oldInfoPixels)
-						
+
 							if e2[6] == "connectionAccepted" then
 								modemConnection.remoteAddress = e2[3]
 								-- acceptingOrDecliningDialog(obj.CykaKnopkaConnect.address, true)
@@ -493,4 +493,3 @@ modemConnection.init()
 ----------------------------------------------------------------------------------------------------------------------------------
 
 return modemConnection
-

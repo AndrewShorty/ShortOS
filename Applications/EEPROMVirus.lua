@@ -7,10 +7,10 @@ local EEPROMLabel = "EEPROM (Lua BIOS)"
 local EEPROMCode = [[
 
 local textLines = {
-  "Поздравляем!",
-  "Вы стали одним из первых счастливых обладателей вируса на OpenComputers.",
-  "Попытайтесь его удалить - посмотрим, что у вас выйдет. ",
-  "Ну, а нубикам советую обращаться к ECS для разблокировки компа.",
+  "Herzlichen glückwunsch!",
+  "Sie sind einer der ersten glücklichen Besitzer des Virus auf opencomputern geworden.",
+  "Versuchen Sie es zu entfernen-lassen Sie uns sehen, was herauskommt. ",
+  "Nun, nubikam rät, ECS zu kontaktieren, um den Comp zu entsperren.",
   " ",
   "Хех)"
 }
@@ -289,12 +289,12 @@ if args[1] == "flashEEPROM" then
   flashEEPROM()
 else
   print(" ")
-  print("Перепрошиваю BIOS...")
+  print("Pereproshivaju BIOS...")
   flashEEPROM()
-  print("Перезаписываю кастомный init.lua...")
+  print("Schreibe init.lua...")
   rewriteInit()
   print(" ")
-  print("Вирус успешно установлен!")
+  print("Virus erfolgreich installiert!")
   print(" ")
 end
 

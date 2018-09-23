@@ -37,7 +37,7 @@ end
 
 local function configurator()
 	fs.makeDirectory(pathToMultiScreenFolder)
-	
+
 	ecs.setScale(0.7)
 
 	local data = ecs.universalWindow("auto", "auto", 40, 0xeeeeee, true, {"EmptyLine"}, {"CenterText", 0x880000, "Здорово, ебана!"}, {"EmptyLine"}, {"WrappedText", 0x262626, "Добро пожаловать в программу конфигурации мультимонитора. Вам необходимо указать количество мониторов по ширине и высоте, которые вы желаете объединить, а также выбрать желаемый масштаб."}, {"EmptyLine"}, {"Input", 0x262626, 0x880000, "Ширина"}, {"Input", 0x262626, 0x880000, "Высота"},  {"Slider", 0x262626, 0x880000, 1, 100, 100, "Масштаб: ", "%"}, {"EmptyLine"}, {"Button", {ecs.colors.orange, 0xffffff, "Подтвердить"}, {0x777777, 0xffffff, "Отмена"}})
@@ -115,7 +115,7 @@ local function configurator()
 					ecs.square(1,1,160,50,color)
 					gpu.setForeground(0xffffff - color)
 					ecs.centerText("xy", 0, "Монитор " .. xC .. "x" .. yC .. " откалиброван!")
-					
+
 					-- table.insert(touchArray, {address = e[2], position = {x = xC, y = yC}})
 					touchArray[xC] = touchArray[xC] or {}
 					touchArray[xC][yC] = touchArray[xC][yC] or {}
@@ -226,24 +226,24 @@ end
 function multiScreen.set(x, y, text)
 	for i = 1, unicode.len(text) do
 		local xMonitor, yMonitor, xPos, yPos = getMonitorAndCoordinates(x + i - 1, y)
-		
+
 		if currentAddress ~= monitors[xMonitor][yMonitor].address then
 			gpu.bind(monitors[xMonitor][yMonitor].address)
 			currentAddress = monitors[xMonitor][yMonitor].address
 			gpu.setResolution(monitors.screenResolutionByWidth, monitors.screenResolutionByHeight)
 		end
-		
+
 		if gpu.getBackground ~= currentBackground then gpu.setBackground(currentBackground) end
 		if gpu.getForeground ~= currentForeground then gpu.setForeground(currentForeground) end
-		
+
 		gpu.set(xPos, yPos, unicode.sub(text, i, i))
 	end
-	
+
 end
 
 function multiScreen.image(x, y, picture)
 	local sizeOfPixelData = 4
-	
+
 	local function convertIndexToCoords(index)
 		index = (index + sizeOfPixelData - 1) / sizeOfPixelData
 		local ostatok = index % picture.width
@@ -286,7 +286,6 @@ multiScreen.image(2, 2, picture)
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 return multiScreen
-
 
 
 
