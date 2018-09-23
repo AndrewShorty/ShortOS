@@ -4,7 +4,7 @@ local MineOSPaths = {}
 
 ---------------------------------------------------------------------------
 
-MineOSPaths.OS = "/MineOS/"
+MineOSPaths.OS = "/ShortOS/"
 MineOSPaths.downloads = MineOSPaths.OS .. "Downloads/"
 MineOSPaths.system = MineOSPaths.OS .. "System/"
 MineOSPaths.applicationData = MineOSPaths.system .. "Application data/"

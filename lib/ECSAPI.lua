@@ -314,7 +314,7 @@ function ecs.getOSApplication(application)
 
 		--Если имеется режим создания ярлыка, то создаем его
 		if application.createShortcut then
-			local desktopPath = "MineOS/Desktop/"
+			local desktopPath = "ShortOS/Desktop/"
 			
 			if application.createShortcut == "desktop" then
 				ecs.createShortCut(desktopPath .. fs.name(application.name) .. ".lnk", application.name .. ".app")
@@ -338,8 +338,8 @@ end
 --Получить список приложений, которые требуется обновить
 function ecs.getAppsToUpdate(debug)
 	--Задаем стартовые пути
-	local pathToApplicationsFile = "MineOS/System/OS/Applications.txt"
-	local pathToSecondApplicationsFile = "MineOS/System/OS/Applications2.txt"
+	local pathToApplicationsFile = "ShortOS/System/OS/Applications.txt"
+	local pathToSecondApplicationsFile = "ShortOS/System/OS/Applications2.txt"
 	--Путь к файл-листу на пастебине
 	local paste = "3j2x4dDn"
 	--Выводим инфу
@@ -1194,7 +1194,7 @@ function ecs.newApplication(path, startName)
 	if ecs.checkName(inputs[1] .. ".app", path) then
 		local name = path .. inputs[1] .. ".app/Resources/"
 		fs.makeDirectory(name)
-		fs.copy("MineOS/System/OS/Icons/SampleIcon.pic", name .. "Icon.pic")
+		fs.copy("ShortOS/System/OS/Icons/SampleIcon.pic", name .. "Icon.pic")
 		local file = io.open(path .. inputs[1] .. ".app/Main.lua", "w")
 		file:write("require('GUI').error('Hello world')")
 		file:close()
@@ -1205,7 +1205,7 @@ end
 function ecs.newApplicationFromLuaFile(pathToLuaFile, pathWhereToCreateApplication)
 	local data = ecs.universalWindow("auto", "auto", 30, ecs.windowColors.background, true, {"EmptyLine"}, {"CenterText", 0x000000, "Новое приложение"}, {"EmptyLine"}, {"Input", 0x262626, 0x880000, "Имя приложения"}, {"Input", 0x262626, 0x880000, "Путь к иконке приложения"}, {"EmptyLine"}, {"Button", {0xbbbbbb, 0xffffff, "OK"}})
 	data[1] = data[1] or "MyApplication"
-	data[2] = data[2] or "MineOS/System/OS/Icons/SampleIcon.pic"
+	data[2] = data[2] or "ShortOS/System/OS/Icons/SampleIcon.pic"
 	if fs.exists(data[2]) then
 		fs.makeDirectory(pathWhereToCreateApplication .. "/" .. data[1] .. ".app/Resources")
 		fs.copy(pathToLuaFile, pathWhereToCreateApplication .. "/" .. data[1] .. ".app/" .. data[1] .. ".lua")
@@ -1372,8 +1372,8 @@ end
 
 --Сохранить файл конфигурации ОС
 function ecs.saveOSSettings()
-	local pathToOSSettings = "MineOS/System/OS/OSSettings.cfg"
-	if not _G.OSSettings then error("Массив настроек ОС отсутствует в памяти!") end
+	local pathToOSSettings = "ShortOS/System/OS/OSSettings.cfg"
+	if not _G.OSSettings then error("Das Array der Betriebssystemeinstellungen befindet sich nicht im Speicher!") end
 	fs.makeDirectory(fs.path(pathToOSSettings))
 	local file = io.open(pathToOSSettings, "w")
 	file:write(serialization.serialize(_G.OSSettings))
@@ -1382,7 +1382,7 @@ end
 
 --Загрузить файл конфигурации ОС, а если его не существует, то создать
 function ecs.loadOSSettings()
-	local pathToOSSettings = "MineOS/System/OS/OSSettings.cfg"
+	local pathToOSSettings = "ShortOS/System/OS/OSSettings.cfg"
 	if fs.exists(pathToOSSettings) then
 		local file = io.open(pathToOSSettings, "r")
 		_G.OSSettings = serialization.unserialize(file:read("*a"))

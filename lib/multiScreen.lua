@@ -8,7 +8,7 @@ local image = require("image")
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-local pathToMultiScreenFolder = "MineOS/System/MultiScreen/"
+local pathToMultiScreenFolder = "ShortOS/System/MultiScreen/"
 local pathToConfigFile = pathToMultiScreenFolder .. "Config.cfg"
 
 local colors = {
