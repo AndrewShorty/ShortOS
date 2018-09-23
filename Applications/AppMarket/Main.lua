@@ -16,7 +16,7 @@ local unicode = require("unicode")
 
 --------------------------------------------------------------------------------
 
-local host = "http://eliteclubsessions.ru/MineOSAPI/2.03/"
+local host = "http://api.shortos.elrobtossohn.de/1.0/"
 local iconCheckReponseTime = 2
 
 local overviewIconsCount = 10
@@ -45,7 +45,7 @@ local orderDirections = {
 }
 
 local downloadPaths = {
-	"/MineOS/Applications/",
+	"/ShortOS/Applications/",
 	"/lib/",
 	"/bin/",
 }
@@ -69,6 +69,7 @@ local orderBys = {
 
 local languages = {
 	[18] = "English",
+	[19] = "German",
 	[71] = "Russian",
 }
 
