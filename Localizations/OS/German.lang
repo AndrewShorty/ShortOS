@@ -1,8 +1,8 @@
 {
 	iconPath = "Icon pfad",
 	downloading = "Herunterladen läuft",
-	networkFTPNewConnection = "FTP-connection",
-	networkFTPConnections = "FTP-connections",
+	networkFTPNewConnection = "FTP-verbindung",
+	networkFTPConnections = "FTP-verbindungen",
 	networkFTPAddress = "Server addresse",
 	networkFTPPort = "Server port",
 	networkFTPUser = "User",
@@ -101,7 +101,7 @@
 	additionalInfo = "Zusätzliche Information",
 	stackTraceback = "Stack traceback",
 
-	favourite = "Favorit",
+	favourite = "Favoriten",
 	search = "Suchen",
 	mounts = "Mounts",
 }

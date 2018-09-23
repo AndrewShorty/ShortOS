@@ -1,7 +1,7 @@
 {
 	installSomeApps = "Apps installieren",
 	installWallpapers = "Wallpapers herunterladen",
-	downloading = "Lade herunter ",
+	downloading = "Installiere ",
 	reboot = "Neustarten",
 	needToReboot = "ShortOS wurde erfolgreich installiert",
 	terms = "Ich akzeptiere die Bedingungen der Vereinbarung",
